@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;1,6..72,200;1,6..72,300&family=Hanken+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{margin:0;background:#FAF6F2}
+a{color:#8D6754;text-decoration:none}
+a:hover{color:#272827}
+button,input,textarea{font-family:inherit;font-size:inherit;color:inherit}
+::selection{background:#F5EBE7;color:#272827}
+image-slot{display:block}
+:focus-visible{outline:2px solid #8D6754;outline-offset:4px}
+@keyframes cDrift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(3%,-4%,0) scale(1.06)}100%{transform:translate3d(0,0,0) scale(1)}}
+@keyframes cIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cSpin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.06s !important}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="background:#FAF6F2;color:#272827;font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:300;position:relative;overflow-x:clip">
+
+  <header id="c-head" style="position:fixed;top:0;left:0;right:0;z-index:120;transition:background .7s cubic-bezier(.22,1,.36,1),backdrop-filter .7s;background:transparent">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1560px;margin:0 auto;padding:clamp(16px,2vw,26px) clamp(18px,4vw,54px)">
+      <a href="Facelines%20Home%20Concept%20B.dc.html" aria-label="Facelines Clinic, home" style="display:block;line-height:0;transition:opacity .4s" style-hover="opacity:.68">
+        <img src="logo-facelines.png" alt="Facelines Clinic" width="192" height="53" style="display:block;height:clamp(26px,2.6vw,34px);width:auto;filter:brightness(0) opacity(.9)" />
+      </a>
+      <div style="display:flex;align-items:center;gap:clamp(8px,1.4vw,18px)">
+        <a href="#enquiry" style="border:1px solid #D9C8C0;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px 22px;border-radius:100px;transition:background .55s cubic-bezier(.22,1,.36,1),border-color .55s,color .55s" style-hover="background:#272827;border-color:#272827;color:#FAF6F2">Book a visit</a>
+        <button type="button" onClick="{{ openMenu }}" aria-label="Open menu" style="display:flex;align-items:center;gap:11px;border:0;background:transparent;cursor:pointer;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px 4px;transition:color .4s" style-hover="color:#8D6754">
+          <span style="display:flex;flex-direction:column;gap:4px;width:20px"><span style="height:1px;background:currentColor"></span><span style="height:1px;background:currentColor;width:70%;margin-left:auto"></span></span>
+          Menu
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-label="Site menu" style="position:fixed;inset:0;z-index:200;background:#272827;color:#FAF6F2;display:flex;flex-direction:column;padding:clamp(18px,2.4vw,30px) clamp(20px,5vw,60px) clamp(30px,5vh,54px);overflow-y:auto">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+        <img src="logo-facelines.png" alt="Facelines Clinic" width="192" height="53" style="display:block;height:clamp(26px,2.6vw,34px);width:auto" />
+        <button type="button" onClick="{{ closeMenu }}" aria-label="Close menu" style="display:flex;align-items:center;gap:11px;border:0;background:transparent;cursor:pointer;color:#FAF6F2;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px 4px;transition:color .4s,transform .6s cubic-bezier(.22,1,.36,1)" style-hover="color:#CD9D88;transform:translateX(3px)">Close ✕</button>
+      </div>
+      <nav style="display:flex;flex-direction:column;gap:2px;margin:auto 0;padding:clamp(24px,6vh,60px) 0">
+        <a href="Facelines%20Home%20Concept%20B.dc.html#approach" onClick="{{ closeMenu }}" style="animation:cIn .85s cubic-bezier(.22,1,.36,1) both;animation-delay:.06s;display:flex;align-items:baseline;gap:clamp(12px,2vw,28px);font-family:'Newsreader',serif;font-weight:200;font-size:clamp(34px,7.4vw,86px);line-height:1.12;color:#FAF6F2;padding:6px 0;transition:color .5s,padding-left .7s cubic-bezier(.22,1,.36,1)" style-hover="color:#CD9D88;padding-left:16px"><span style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.2em;color:#BBA498">01</span>Approach</a>
+        <a href="Facelines%20Home%20Concept%20B.dc.html#treatments" onClick="{{ closeMenu }}" style="animation:cIn .85s cubic-bezier(.22,1,.36,1) both;animation-delay:.14s;display:flex;align-items:baseline;gap:clamp(12px,2vw,28px);font-family:'Newsreader',serif;font-weight:200;font-size:clamp(34px,7.4vw,86px);line-height:1.12;color:#FAF6F2;padding:6px 0;transition:color .5s,padding-left .7s cubic-bezier(.22,1,.36,1)" style-hover="color:#CD9D88;padding-left:16px"><span style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.2em;color:#BBA498">02</span>Treatments</a>
+        <a href="Facelines%20Home%20Concept%20B.dc.html#results" onClick="{{ closeMenu }}" style="animation:cIn .85s cubic-bezier(.22,1,.36,1) both;animation-delay:.22s;display:flex;align-items:baseline;gap:clamp(12px,2vw,28px);font-family:'Newsreader',serif;font-weight:200;font-size:clamp(34px,7.4vw,86px);line-height:1.12;color:#FAF6F2;padding:6px 0;transition:color .5s,padding-left .7s cubic-bezier(.22,1,.36,1)" style-hover="color:#CD9D88;padding-left:16px"><span style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.2em;color:#BBA498">03</span>Results</a>
+        <a href="Facelines%20Home%20Concept%20B.dc.html#room" onClick="{{ closeMenu }}" style="animation:cIn .85s cubic-bezier(.22,1,.36,1) both;animation-delay:.3s;display:flex;align-items:baseline;gap:clamp(12px,2vw,28px);font-family:'Newsreader',serif;font-weight:200;font-size:clamp(34px,7.4vw,86px);line-height:1.12;color:#FAF6F2;padding:6px 0;transition:color .5s,padding-left .7s cubic-bezier(.22,1,.36,1)" style-hover="color:#CD9D88;padding-left:16px"><span style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.2em;color:#BBA498">04</span>The room</a>
+        <a href="#c-top" onClick="{{ closeMenu }}" style="animation:cIn .85s cubic-bezier(.22,1,.36,1) both;animation-delay:.38s;display:flex;align-items:baseline;gap:clamp(12px,2vw,28px);font-family:'Newsreader',serif;font-weight:200;font-size:clamp(34px,7.4vw,86px);line-height:1.12;color:#CD9D88;padding:6px 0;transition:padding-left .7s cubic-bezier(.22,1,.36,1)" style-hover="padding-left:16px"><span style="font-family:'Hanken Grotesk',sans-serif;font-size:11px;letter-spacing:.2em;color:#BBA498">05</span>Contact</a>
+      </nav>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:22px;font-size:13px;line-height:1.8;color:#BBA498;animation:cIn .9s cubic-bezier(.22,1,.36,1) both;animation-delay:.46s">
+        <div>Shop 1, 220 Goulburn Street<br />Surry Hills NSW 2010</div>
+        <div><a href="tel:+61451830180" style="color:#FAF6F2">+61 451 830 180</a><br /><a href="mailto:hello@facelinesclinic.com" style="color:#FAF6F2">hello@facelinesclinic.com</a></div>
+        <div>Tuesday to Saturday<br />By appointment only</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <section id="c-top" style="position:relative;overflow:hidden;padding:clamp(118px,16vh,180px) clamp(20px,4.5vw,60px) clamp(46px,7vh,80px)">
+    <div aria-hidden="true" style="position:absolute;top:-24%;right:-12%;width:min(58vw,700px);height:min(58vw,700px);border-radius:50%;background:radial-gradient(circle at 45% 45%,#F5EBE7,rgba(245,235,231,0) 68%);filter:blur(10px);animation:cDrift 23s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:relative;z-index:2;max-width:1560px;margin:0 auto">
+      <nav aria-label="Breadcrumb" data-soft="1" style="display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8D6754;margin-bottom:clamp(26px,5vh,50px)">
+        <a href="Facelines%20Home%20Concept%20B.dc.html" style="color:#8D6754;transition:color .4s" style-hover="color:#272827">Home</a>
+        <span aria-hidden="true" style="color:#B39B8F">/</span>
+        <span style="color:#3F3A37">Contact</span>
+      </nav>
+      <h1 style="margin:0;font-family:'Newsreader',serif;font-weight:200;font-size:clamp(38px,7.2vw,116px);line-height:1.01;letter-spacing:-.022em;max-width:14ch">
+        <span style="display:block;overflow:hidden;padding-bottom:.06em"><span data-line="1" style="display:block">Come and</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:.06em"><span data-line="1" style="display:block;font-style:italic;color:#8D6754">sit with us</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:.06em"><span data-line="1" style="display:block">first.</span></span>
+      </h1>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:clamp(24px,4vw,64px);align-items:end;margin-top:clamp(30px,5vh,54px)">
+        <p data-soft="2" style="margin:0;font-size:clamp(15px,1.1vw,17px);line-height:1.75;color:#574C46;max-width:44ch;text-wrap:pretty">Every enquiry is read by Kylie, not a booking service. Tell us what's bothering you — or what you've been quietly wondering about — and we'll write back with a plan and a price before you set foot in the room.</p>
+        <div data-soft="2" style="display:flex;flex-wrap:wrap;gap:10px">
+          <a href="#enquiry" style="background:#272827;color:#FAF6F2;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:20px 32px;border-radius:100px;white-space:nowrap;transition:background .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)" style-hover="background:#8D6754;transform:translateY(-2px)">Start an enquiry</a>
+          <a href="tel:+61451830180" style="display:inline-flex;align-items:center;gap:10px;border:1px solid #D9C8C0;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:20px 28px;border-radius:100px;white-space:nowrap;transition:border-color .5s,gap .5s cubic-bezier(.22,1,.36,1)" style-hover="border-color:#272827;gap:18px">Call the clinic <span style="font-size:13px">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Ways to reach us" style="padding:0 clamp(20px,4.5vw,60px) clamp(60px,10vh,120px)">
+    <div style="max-width:1560px;margin:0 auto;border-top:1px solid #E6D9D2">
+      <a data-row="1" href="tel:+61451830180" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(10px,2vw,30px);align-items:baseline;padding:clamp(22px,3.4vh,36px) 0;border-bottom:1px solid #E6D9D2;color:#272827;transition:padding-left .7s cubic-bezier(.22,1,.36,1)" style-hover="padding-left:12px">
+        <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8D6754">Call or text</span>
+        <span style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(22px,2.6vw,34px);line-height:1.2">+61 451 830 180</span>
+        <span style="display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:13.5px;color:#574C46">Fastest between 10am and 4pm <span aria-hidden="true" style="color:#8D6754">↗</span></span>
+      </a>
+      <a data-row="1" href="mailto:hello@facelinesclinic.com" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(10px,2vw,30px);align-items:baseline;padding:clamp(22px,3.4vh,36px) 0;border-bottom:1px solid #E6D9D2;color:#272827;transition:padding-left .7s cubic-bezier(.22,1,.36,1)" style-hover="padding-left:12px">
+        <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8D6754">Email</span>
+        <span style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(19px,2.2vw,30px);line-height:1.2;word-break:break-word">hello@facelinesclinic.com</span>
+        <span style="display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:13.5px;color:#574C46">Answered within one business day <span aria-hidden="true" style="color:#8D6754">↗</span></span>
+      </a>
+      <a data-row="1" href="https://maps.google.com/?q=220+Goulburn+Street+Surry+Hills" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(10px,2vw,30px);align-items:baseline;padding:clamp(22px,3.4vh,36px) 0;border-bottom:1px solid #E6D9D2;color:#272827;transition:padding-left .7s cubic-bezier(.22,1,.36,1)" style-hover="padding-left:12px">
+        <span style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8D6754">Visit</span>
+        <span style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(22px,2.6vw,34px);line-height:1.2">Shop 1, 220 Goulburn Street</span>
+        <span style="display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:13.5px;color:#574C46">Surry Hills NSW 2010 · appointment only <span aria-hidden="true" style="color:#8D6754">↗</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section id="enquiry" style="position:relative;overflow:hidden;background:#F5EBE7;border-radius:clamp(30px,6vw,80px) clamp(30px,6vw,80px) 0 0;padding:clamp(64px,11vh,140px) clamp(20px,4.5vw,60px)">
+    <div aria-hidden="true" style="position:absolute;top:0;right:0;width:min(52%,700px);height:clamp(200px,32vh,380px);opacity:.42;pointer-events:none;mask-image:linear-gradient(200deg,#000,transparent 72%);-webkit-mask-image:linear-gradient(200deg,#000,transparent 72%)"><image-slot id="c-texture" src="uploads/kelsey-curtis-kD9qprR6HBI-unsplash.jpg" shape="rect" placeholder="Texture"></image-slot></div>
+    <div style="position:relative;z-index:2;max-width:1560px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(30px,5vw,80px);align-items:start">
+      <div>
+        <div data-soft="1" style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#3F3A37;margin-bottom:22px">Enquiry</div>
+        <h2 data-soft="1" style="margin:0 0 20px;font-family:'Newsreader',serif;font-weight:200;font-size:clamp(28px,3.6vw,52px);line-height:1.1;letter-spacing:-.012em;max-width:18ch">Write to us like you'd write to a friend.</h2>
+        <p data-soft="2" style="margin:0 0 clamp(26px,4vh,40px);font-size:15px;line-height:1.8;color:#574C46;max-width:42ch;text-wrap:pretty">No forms full of drop-downs. Three details, a sentence about what's on your mind, and we'll do the rest by reply.</p>
+
+        <div data-mask="1" style="position:relative;aspect-ratio:5/4;overflow:hidden;border-radius:clamp(90px,14vw,190px) 26px 26px 26px;background:#EADFD9">
+          <div data-img="slow" style="position:absolute;inset:-8% 0"><image-slot id="c-room" src="uploads/pexels-enis-mekic-32565588-7016405.jpg" shape="rect" placeholder="Treatment room"></image-slot></div>
+        </div>
+        <div data-soft="3" style="display:flex;align-items:center;gap:10px;margin-top:14px;font-size:12px;color:#3F3A37"><span style="width:18px;height:1px;background:#8D6754"></span>The treatment room, on a Tuesday morning</div>
+      </div>
+
+      <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+        <div style="animation:cIn .9s cubic-bezier(.22,1,.36,1) both;background:#FFFFFF;border-radius:clamp(20px,3vw,34px);padding:clamp(28px,4vw,52px)">
+          <div style="width:52px;height:52px;border-radius:50%;border:1px solid #8D6754;display:flex;align-items:center;justify-content:center;margin-bottom:24px">
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#8D6754" stroke-width="1.2" aria-hidden="true"><path d="m6.6 12.4 3.4 3.4 7.4-7.8" stroke-linecap="round"></path></svg>
+          </div>
+          <h3 style="margin:0 0 14px;font-family:'Newsreader',serif;font-weight:200;font-size:clamp(26px,3.4vw,42px);line-height:1.12">Received, thank you.</h3>
+          <p style="margin:0 0 26px;font-size:15px;line-height:1.8;color:#574C46;max-width:40ch;text-wrap:pretty">Kylie reads enquiries herself, usually the same evening. You'll get a reply with two or three times that suit what you've told us — and a written quote before anything is booked.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <a href="Facelines%20Home%20Concept%20B.dc.html" style="background:#272827;color:#FAF6F2;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:18px 28px;border-radius:100px;transition:background .6s" style-hover="background:#8D6754">Back to the clinic</a>
+            <button type="button" onClick="{{ reset }}" style="border:1px solid #D9C8C0;background:transparent;cursor:pointer;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:18px 26px;border-radius:100px;transition:border-color .5s" style-hover="border-color:#272827">Send another</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ notDone }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" noValidate="{{ true }}" style="display:flex;flex-direction:column;gap:clamp(20px,3vh,28px);background:#FFFFFF;border-radius:clamp(20px,3vw,34px);padding:clamp(24px,3.4vw,46px)">
+          <fieldset style="border:0;padding:0;margin:0">
+            <legend style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;margin-bottom:14px">What's on your mind?</legend>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="6">
+                <button type="button" onClick="{{ chip.onSelect }}" aria-pressed="{{ chip.on }}" style="{{ chip.style }}">{{ chip.label }}</button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ eTreat }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top:12px;font-size:12.5px;color:#9E4B37">Pick the closest one — we'll refine it in the room.</div></sc-if>
+          </fieldset>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:clamp(16px,2.2vw,24px)">
+            <div>
+              <label for="c-name" style="display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;margin-bottom:9px">Your name</label>
+              <input id="c-name" type="text" autoComplete="name" value="{{ vName }}" onChange="{{ onName }}" placeholder="First and last" style="{{ sName }}" />
+              <sc-if value="{{ eName }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top:7px;font-size:12.5px;color:#9E4B37">We'd like to know who we're meeting.</div></sc-if>
+            </div>
+            <div>
+              <label for="c-phone" style="display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;margin-bottom:9px">Mobile</label>
+              <input id="c-phone" type="tel" autoComplete="tel" value="{{ vPhone }}" onChange="{{ onPhone }}" placeholder="04__ ___ ___" style="{{ sPhone }}" />
+              <sc-if value="{{ ePhone }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top:7px;font-size:12.5px;color:#9E4B37">A mobile, so we can text you times.</div></sc-if>
+            </div>
+          </div>
+
+          <div>
+            <label for="c-email" style="display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;margin-bottom:9px">Email</label>
+            <input id="c-email" type="email" autoComplete="email" value="{{ vEmail }}" onChange="{{ onEmail }}" placeholder="you@example.com" style="{{ sEmail }}" />
+            <sc-if value="{{ eEmail }}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top:7px;font-size:12.5px;color:#9E4B37">That address looks incomplete.</div></sc-if>
+          </div>
+
+          <fieldset style="border:0;padding:0;margin:0">
+            <legend style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;margin-bottom:14px">Best time to reach you</legend>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ slots }}" as="slot" hint-placeholder-count="4">
+                <button type="button" onClick="{{ slot.onSelect }}" aria-pressed="{{ slot.on }}" style="{{ slot.style }}">{{ slot.label }}</button>
+              </sc-for>
+            </div>
+          </fieldset>
+
+          <div>
+            <label for="c-notes" style="display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;margin-bottom:9px">In your own words</label>
+            <textarea id="c-notes" rows="4" value="{{ vNotes }}" onChange="{{ onNotes }}" placeholder="What you'd like to change, anything you've had done before, a date you're working towards…" style="{{ sNotes }}"></textarea>
+          </div>
+
+          <button type="button" onClick="{{ toggleConsent }}" aria-pressed="{{ vConsent }}" style="{{ sConsentRow }}">
+            <span style="{{ sConsentBox }}"></span>
+            <span style="font-size:13px;line-height:1.65;color:#574C46;text-align:left">I'm happy for Facelines Clinic to contact me about this enquiry and to keep my details on file.</span>
+          </button>
+          <sc-if value="{{ eConsent }}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size:12.5px;color:#9E4B37;margin-top:-12px">We need this before we can write back.</div></sc-if>
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding-top:4px">
+            <button type="submit" disabled="{{ sending }}" style="{{ sSubmit }}">
+              <sc-if value="{{ sending }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;width:13px;height:13px;border:1px solid rgba(250,246,242,.4);border-top-color:#FAF6F2;border-radius:50%;animation:cSpin .7s linear infinite"></span></sc-if>
+              {{ submitLabel }}
+            </button>
+            <span style="font-size:12px;color:#3F3A37">No newsletters, no third parties</span>
+          </div>
+        </form>
+      </sc-if>
+    </div>
+  </section>
+
+  <section aria-label="Finding the clinic" style="background:#F5EBE7;padding:clamp(20px,4vh,50px) clamp(20px,4.5vw,60px) clamp(70px,12vh,150px)">
+    <div style="max-width:1560px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,4vw,64px);align-items:start">
+      <div>
+        <div data-soft="1" style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#3F3A37;margin-bottom:22px">Getting here</div>
+        <h2 data-soft="1" style="margin:0 0 26px;font-family:'Newsreader',serif;font-weight:200;font-size:clamp(26px,3.2vw,44px);line-height:1.12;letter-spacing:-.01em;max-width:20ch">Ground floor, quiet end of Goulburn Street.</h2>
+        <dl style="margin:0;display:grid;grid-template-columns:auto 1fr;gap:14px clamp(18px,3vw,34px);font-size:14px;line-height:1.7">
+          <dt data-soft="3" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;padding-top:3px">Train</dt>
+          <dd data-soft="3" style="margin:0;color:#574C46">Eight minutes on foot from Central, Devonshire Street exit.</dd>
+          <dt data-soft="3" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;padding-top:3px">Parking</dt>
+          <dd data-soft="3" style="margin:0;color:#574C46">Two-hour street parking on Goulburn and Riley; secure parking under 220 Goulburn.</dd>
+          <dt data-soft="3" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;padding-top:3px">Access</dt>
+          <dd data-soft="3" style="margin:0;color:#574C46">Step-free entry from the street, lift to the treatment room, accessible bathroom.</dd>
+          <dt data-soft="3" style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;padding-top:3px">Arriving</dt>
+          <dd data-soft="3" style="margin:0;color:#574C46">Ring the buzzer marked Facelines. Come ten minutes early if you'd like tea.</dd>
+        </dl>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr));gap:18px;margin-top:clamp(28px,4vh,44px);padding-top:clamp(22px,3vh,32px);border-top:1px solid #E2D2CA">
+          <div data-soft="3"><div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;margin-bottom:8px">Tue – Fri</div><div style="font-family:'Newsreader',serif;font-size:clamp(20px,2.2vw,28px);font-weight:300">10am – 7pm</div></div>
+          <div data-soft="3"><div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;margin-bottom:8px">Saturday</div><div style="font-family:'Newsreader',serif;font-size:clamp(20px,2.2vw,28px);font-weight:300">9am – 3pm</div></div>
+          <div data-soft="3"><div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#3F3A37;margin-bottom:8px">Sun – Mon</div><div style="font-family:'Newsreader',serif;font-size:clamp(20px,2.2vw,28px);font-weight:300">Closed</div></div>
+        </div>
+      </div>
+      <div>
+        <div data-mask="1" style="position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:26px 26px 26px clamp(90px,14vw,190px);background:#EADFD9">
+          <image-slot id="c-map" shape="rect" placeholder="Drop a map screenshot of 220 Goulburn Street"></image-slot>
+        </div>
+        <a href="https://maps.google.com/?q=220+Goulburn+Street+Surry+Hills" style="display:inline-flex;align-items:center;gap:10px;margin-top:16px;border:1px solid #D9C8C0;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:16px 26px;border-radius:100px;transition:background .55s cubic-bezier(.22,1,.36,1),color .55s,gap .55s" style-hover="background:#272827;color:#FAF6F2;gap:16px">Open in Maps <span aria-hidden="true" style="font-size:13px">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Before you book" style="padding:clamp(70px,12vh,150px) clamp(20px,4.5vw,60px)">
+    <div style="max-width:1560px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:clamp(28px,4vw,70px);align-items:start">
+      <div>
+        <div data-soft="1" style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#8D6754;margin-bottom:22px">Before you book</div>
+        <h2 data-soft="1" style="margin:0;font-family:'Newsreader',serif;font-weight:200;font-size:clamp(26px,3.4vw,46px);line-height:1.12;letter-spacing:-.01em;max-width:18ch">The questions people ask on the phone.</h2>
+      </div>
+      <div>
+        <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="5">
+          <div style="border-top:1px solid #E6D9D2">
+            <button type="button" onClick="{{ q.toggle }}" aria-expanded="{{ q.open }}" style="{{ q.head }}">
+              <span style="font-family:'Newsreader',serif;font-weight:300;font-size:clamp(18px,2vw,25px);line-height:1.3;text-align:left">{{ q.q }}</span>
+              <span style="{{ q.icon }}" aria-hidden="true">+</span>
+            </button>
+            <div style="{{ q.body }}">
+              <p style="margin:0;min-height:0;overflow:hidden;padding:0 0 clamp(20px,3vh,28px);font-size:14.5px;line-height:1.8;color:#574C46;max-width:52ch;text-wrap:pretty">{{ q.a }}</p>
+            </div>
+          </div>
+        </sc-for>
+        <div style="border-top:1px solid #E6D9D2;padding-top:clamp(22px,3vh,30px);margin-top:2px;font-size:14px;color:#574C46">
+          Something else on your mind? <a href="#enquiry" style="color:#8D6754;background-image:linear-gradient(#8D6754,#8D6754);background-repeat:no-repeat;background-position:0 100%;background-size:100% 1px;padding-bottom:2px;transition:background-size .6s cubic-bezier(.22,1,.36,1)" style-hover="background-size:0% 1px">Ask it in the form</a>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="position:relative;overflow:hidden;background:#272827;color:#FAF6F2;border-radius:clamp(30px,6vw,80px) clamp(30px,6vw,80px) 0 0;padding:clamp(64px,11vh,140px) clamp(20px,4.5vw,60px) clamp(46px,7vh,80px)">
+    <div aria-hidden="true" style="position:absolute;top:-34%;left:56%;width:min(70vw,820px);height:min(70vw,820px);border-radius:50%;background:radial-gradient(circle,rgba(141,103,84,.42),rgba(141,103,84,0) 66%);filter:blur(20px);animation:cDrift 28s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:relative;z-index:2;max-width:1560px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,5vw,70px);align-items:end">
+        <h2 data-soft="1" style="margin:0;font-family:'Newsreader',serif;font-weight:200;font-size:clamp(30px,5vw,76px);line-height:1.05;letter-spacing:-.02em;max-width:16ch">Thirty minutes now saves a year of wondering.</h2>
+        <div style="display:flex;flex-direction:column;gap:22px;align-items:flex-start">
+          <p data-soft="2" style="margin:0;font-size:15px;line-height:1.8;color:#BBA498;max-width:36ch;text-wrap:pretty">Complimentary for new clients, and there is never any obligation to book treatment on the day.</p>
+          <a data-soft="2" href="#enquiry" style="background:#FAF6F2;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:20px 32px;border-radius:100px;transition:background .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)" style-hover="background:#CD9D88;transform:translateY(-2px)">Start an enquiry</a>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:clamp(24px,3vw,44px);margin-top:clamp(50px,8vh,100px);padding-top:clamp(28px,4vh,44px);border-top:1px solid #3E3A38;font-size:13.5px;line-height:1.9;color:#BBA498">
+        <div>
+          <div style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#BBA498;margin-bottom:14px">Explore</div>
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+            <a href="Facelines%20Home%20Concept%20B.dc.html#approach" style="color:#FAF6F2;background-image:linear-gradient(#CD9D88,#CD9D88);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;padding-bottom:2px;transition:background-size .6s cubic-bezier(.22,1,.36,1)" style-hover="background-size:100% 1px">Approach</a>
+            <a href="Facelines%20Home%20Concept%20B.dc.html#treatments" style="color:#FAF6F2;background-image:linear-gradient(#CD9D88,#CD9D88);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;padding-bottom:2px;transition:background-size .6s cubic-bezier(.22,1,.36,1)" style-hover="background-size:100% 1px">Treatments</a>
+            <a href="Facelines%20Home%20Concept%20B.dc.html#results" style="color:#FAF6F2;background-image:linear-gradient(#CD9D88,#CD9D88);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;padding-bottom:2px;transition:background-size .6s cubic-bezier(.22,1,.36,1)" style-hover="background-size:100% 1px">Results</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#BBA498;margin-bottom:14px">Visit</div>
+          Shop 1, 220 Goulburn Street<br />Surry Hills NSW 2010
+        </div>
+        <div>
+          <div style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#BBA498;margin-bottom:14px">Reach us</div>
+          <a href="tel:+61451830180" style="color:#FAF6F2">+61 451 830 180</a><br />
+          <a href="mailto:hello@facelinesclinic.com" style="color:#FAF6F2">hello@facelinesclinic.com</a>
+        </div>
+        <div>
+          <div style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#BBA498;margin-bottom:14px">Follow</div>
+          <div style="display:flex;gap:9px">
+            <a href="#" aria-label="Instagram" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #45403D;border-radius:100px;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s,transform .5s" style-hover="background:#CD9D88;border-color:#CD9D88;transform:translateY(-3px)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FAF6F2" stroke-width="1.5" aria-hidden="true"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="16.9" cy="7.1" r="1.1" fill="#FAF6F2" stroke="none"></circle></svg>
+            </a>
+            <a href="#" aria-label="Facebook" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #45403D;border-radius:100px;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s,transform .5s" style-hover="background:#CD9D88;border-color:#CD9D88;transform:translateY(-3px)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#FAF6F2" aria-hidden="true"><path d="M13.4 21v-8h2.7l.4-3.15h-3.1V7.85c0-.9.25-1.5 1.6-1.5h1.7V3.5c-.3 0-1.3-.1-2.5-.1-2.45 0-4.15 1.5-4.15 4.25V9.85H7.4V13h2.65v8Z"></path></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #45403D;border-radius:100px;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s,transform .5s" style-hover="background:#CD9D88;border-color:#CD9D88;transform:translateY(-3px)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#FAF6F2" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3.2 8.5h3.5V21H3.2Zm6.3 0H13v1.75c.5-.95 1.75-2 3.6-2 2.4 0 4.4 1.6 4.4 5V21h-3.5v-6.35c0-1.6-.6-2.6-2-2.6-1.2 0-1.95.8-2.25 1.6-.1.3-.15.7-.15 1.05V21H9.5Z"></path></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:clamp(40px,6vh,72px);display:flex;flex-wrap:wrap;gap:clamp(18px,4vw,40px);justify-content:space-between;align-items:baseline">
+        <img src="logo-facelines.png" alt="Facelines Clinic" width="192" height="53" style="display:block;height:clamp(30px,4.4vw,54px);width:auto" />
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,24px);row-gap:8px;font-size:11.5px">
+          <a href="#" style="color:#BBA498;transition:color .4s" style-hover="color:#CD9D88">Privacy</a>
+          <a href="#" style="color:#BBA498;transition:color .4s" style-hover="color:#CD9D88">Treatment consent</a>
+          <a href="#" style="color:#BBA498;transition:color .4s" style-hover="color:#CD9D88">Cancellation policy</a>
+        </div>
+      </div>
+      <div style="margin-top:20px;font-size:11.5px;color:#B39B8F">© 2026 Facelines Clinic · Cosmetic treatments carry risk; results differ between people and nothing here is medical advice.</div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;subtle&quot;,&quot;balanced&quot;,&quot;expressive&quot;],&quot;default&quot;:&quot;expressive&quot;,&quot;tsType&quot;:&quot;'subtle'|'balanced'|'expressive'&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  state = {
+    menu: false, sending: false, done: false, open: 0,
+    f: { treat: '', slot: 'Anytime', name: '', phone: '', email: '', notes: '', consent: false },
+    err: {}
+  };
+
+  TREATS = ['Anti-wrinkle', 'Dermal filler', 'Lip & chin', 'Jawline', 'Peels & skin', 'Not sure yet'];
+  SLOTS = ['Mornings', 'Lunchtime', 'After work', 'Anytime'];
+  FAQ = [
+    ['Do I need a consultation before treatment?', 'Yes, and it is complimentary. We look at your face at rest and in movement, talk through what is realistic, and write a plan with prices. Many people book treatment for another day; some decide against it entirely, which is a perfectly good outcome.'],
+    ['Will anyone be able to tell?', 'That is the whole brief. Doses are small and layered across visits rather than done in one dramatic sitting, so the change reads as a good stretch of sleep. If you want something obvious, we are probably not the right clinic.'],
+    ['How long should I set aside?', 'Thirty minutes for a consultation, thirty to sixty for treatment depending on what we are doing. Only one client is in the clinic at a time, so appointments do not run late.'],
+    ['What does it cost?', 'Anti-wrinkle treatment starts at $12 per unit, filler from $650, and skin therapy from $220. You always get the full figure in writing before anything is drawn up.'],
+    ['Can I change or cancel a booking?', 'Of course — give us 24 hours and there is no fee. Inside 24 hours we ask for half the treatment cost, because the room stays empty.']
+  ];
+
+  componentDidMount() {
+    this._live = true;
+    this._onKey = e => { if (e.key === 'Escape' && this.state.menu) this.setState({ menu: false }, () => this.lock(false)); };
+    window.addEventListener('keydown', this._onKey);
+    this.initMotion();
+  }
+  componentWillUnmount() {
+    this._live = false;
+    window.removeEventListener('keydown', this._onKey);
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    clearInterval(window.__cHeal);
+    document.body.style.overflow = '';
+  }
+
+  lock(on) { document.body.style.overflow = on ? 'hidden' : ''; }
+
+  async initMotion() {
+    for (let i = 0; i < 100 && !(window.gsap && window.ScrollTrigger); i++) await new Promise(r => setTimeout(r, 60));
+    this.wireHeader();
+    const gsap = window.gsap, ST = window.ScrollTrigger;
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!gsap || !ST || reduced) return;
+    gsap.registerPlugin(ST);
+    this.build();
+    this._heals = 0;
+    clearInterval(window.__cHeal);
+    window.__cHeal = setInterval(() => {
+      if (window.ScrollTrigger && window.ScrollTrigger.getAll().length === 0 && this._heals < 6) { this._heals++; this.build(); }
+    }, 1500);
+  }
+
+  build() {
+    const gsap = window.gsap, ST = window.ScrollTrigger;
+    if (!gsap || !ST) return;
+    if (ST.getAll().length) { ST.refresh(); return; }
+    try {
+      const q = s => Array.from(document.querySelectorAll(s));
+      const lvl = this.props.motion || 'balanced';
+      const k = lvl === 'subtle' ? 0.7 : lvl === 'expressive' ? 1.28 : 1;
+      const E = 'power2.out';
+
+      // authored CSS is the visible state; from-values are written only when armed
+      const reveal = (target, from, to, opts) => {
+        const t = gsap.fromTo(target, from, Object.assign({ paused: true, immediateRender: false }, to));
+        ST.create({ trigger: (opts && opts.trigger) || target, start: (opts && opts.start) || 'top 88%', once: true, onEnter: () => t.play(0) });
+      };
+
+      // 1 — masthead: the one loud moment, restored on rebuild rather than re-run
+      const heroSel = '[data-line="1"],#c-top [data-soft="1"],#c-top [data-soft="2"]';
+      gsap.set(heroSel, { clearProps: 'transform,opacity' });
+      const intro = gsap.timeline({ paused: true, defaults: { immediateRender: false } })
+        .from('[data-line="1"]', { yPercent: 112, duration: 1.45 * k, ease: 'power4.out', stagger: 0.12 * k })
+        .from('#c-top [data-soft="1"]', { y: 14 * k, opacity: 0, duration: 0.95 * k, ease: E }, 0.08)
+        .from('#c-top [data-soft="2"]', { y: 18 * k, opacity: 0, duration: 1 * k, ease: E, stagger: 0.08 * k }, 0.5);
+      if (window.__cIntro) intro.progress(1);
+      else { window.__cIntro = true; requestAnimationFrame(() => intro.play(0)); }
+
+      // 2 — contact rows: hairlines draw, rows settle in sequence
+      const rows = q('[data-row="1"]');
+      if (rows.length) reveal(rows, { y: 20 * k, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9 * k, ease: E, stagger: 0.1 * k }, { trigger: rows[0].parentElement, start: 'top 86%' });
+
+      // 3 — images: gentle drift and an opening mask
+      q('[data-img]').forEach(el => gsap.fromTo(el, { yPercent: -5 * k }, { yPercent: 5 * k, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } }));
+      q('[data-mask="1"]').forEach(el => reveal(el, { clipPath: 'inset(12% 8% 12% 8% round 40px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', duration: 1.45 * k, ease: 'power3.inOut' }, { start: 'top 86%' }));
+
+      // 4 — quiet supporting fades
+      q('#enquiry [data-soft="1"], footer [data-soft="1"], section [data-soft="1"]').forEach(el => {
+        if (el.closest('#c-top')) return;
+        reveal(el, { y: 20 * k, opacity: 0 }, { y: 0, opacity: 1, duration: 1 * k, ease: E }, { start: 'top 90%' });
+      });
+      q('[data-soft="2"]').forEach(el => {
+        if (el.closest('#c-top')) return;
+        reveal(el, { y: 16 * k, opacity: 0 }, { y: 0, opacity: 1, duration: 0.95 * k, ease: E }, { start: 'top 92%' });
+      });
+      q('[data-soft="3"]').forEach((el, i) => reveal(el, { y: 12 * k, opacity: 0 }, { y: 0, opacity: 1, duration: 0.85 * k, ease: E, delay: (i % 4) * 0.05 }, { start: 'top 94%' }));
+
+      setTimeout(() => ST.refresh(), 500);
+      setTimeout(() => ST.refresh(), 1500);
+    } catch (e) {
+      console.error('[facelines-contact] motion setup failed', e);
+    }
+  }
+
+  wireHeader() {
+    const h = document.querySelector('#c-head');
+    if (!h) return;
+    let on = null;
+    const apply = () => {
+      const s = window.scrollY > 30;
+      if (s === on) return;
+      on = s;
+      h.style.background = s ? 'rgba(250,246,242,.88)' : 'transparent';
+      h.style.backdropFilter = s ? 'blur(16px)' : 'none';
+      h.style.boxShadow = s ? '0 1px 0 rgba(39,40,39,.08)' : 'none';
+    };
+    this._onScroll = () => requestAnimationFrame(apply);
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    apply();
+  }
+
+  pill(on) {
+    return {
+      cursor: 'pointer', fontFamily: 'inherit', fontSize: '13px', padding: '12px 20px', borderRadius: '100px',
+      border: '1px solid ' + (on ? '#272827' : '#D9C8C0'),
+      background: on ? '#272827' : 'transparent',
+      color: on ? '#FAF6F2' : '#3F3A37',
+      transition: 'background .5s cubic-bezier(.22,1,.36,1),border-color .5s,color .5s,transform .5s',
+      transform: on ? 'translateY(-1px)' : 'none'
+    };
+  }
+  field(bad) {
+    return {
+      width: '100%', padding: '15px 18px', borderRadius: '100px',
+      border: '1px solid ' + (bad ? '#9E4B37' : '#DCCCC4'),
+      background: bad ? 'rgba(158,75,55,.04)' : '#FAF6F2',
+      fontSize: '15px', color: '#272827', outline: 'none',
+      transition: 'border-color .45s cubic-bezier(.22,1,.36,1),background .45s'
+    };
+  }
+
+  validate() {
+    const f = this.state.f, e = {};
+    if (!f.treat) e.treat = 1;
+    if (f.name.trim().length < 2) e.name = 1;
+    if (f.phone.replace(/[^0-9]/g, '').length < 8) e.phone = 1;
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(f.email.trim())) e.email = 1;
+    if (!f.consent) e.consent = 1;
+    return e;
+  }
+  set(key, v) {
+    this.setState(s => {
+      const err = Object.assign({}, s.err);
+      delete err[key];
+      return { f: Object.assign({}, s.f, { [key]: v }), err };
+    });
+  }
+
+  renderVals() {
+    const s = this.state, f = s.f;
+    const mk = (list, key) => list.map(l => ({ label: l, on: f[key] === l, style: this.pill(f[key] === l), onSelect: () => this.set(key, l) }));
+    const submit = ev => {
+      if (ev && ev.preventDefault) ev.preventDefault();
+      const e = this.validate();
+      if (Object.keys(e).length) { this.setState({ err: e }); return; }
+      this.setState({ sending: true });
+      setTimeout(() => {
+        if (!this._live) return;
+        this.setState({ sending: false, done: true });
+        if (window.ScrollTrigger) setTimeout(() => window.ScrollTrigger.refresh(), 120);
+      }, 1300);
+    };
+    const faqs = this.FAQ.map(([question, answer], i) => {
+      const open = s.open === i;
+      return {
+        q: question, a: answer, open,
+        toggle: () => this.setState({ open: open ? -1 : i }, () => { if (window.ScrollTrigger) window.ScrollTrigger.refresh(); }),
+        head: {
+          display: 'flex', gap: '18px', alignItems: 'flex-start', justifyContent: 'space-between', width: '100%',
+          background: 'transparent', border: 0, cursor: 'pointer', fontFamily: 'inherit',
+          padding: 'clamp(18px,2.8vh,26px) 0', color: open ? '#8D6754' : '#272827',
+          transition: 'color .45s cubic-bezier(.22,1,.36,1)'
+        },
+        icon: {
+          flex: '0 0 auto', width: '26px', height: '26px', borderRadius: '50%', display: 'flex',
+          alignItems: 'center', justifyContent: 'center', fontSize: '15px', lineHeight: 1,
+          border: '1px solid ' + (open ? '#8D6754' : '#D9C8C0'),
+          color: open ? '#FAF6F2' : '#8D6754', background: open ? '#8D6754' : 'transparent',
+          transform: open ? 'rotate(135deg)' : 'rotate(0deg)',
+          transition: 'transform .55s cubic-bezier(.22,1,.36,1),background .45s,border-color .45s,color .45s'
+        },
+        body: {
+          display: 'grid', gridTemplateRows: open ? '1fr' : '0fr', opacity: open ? 1 : 0,
+          overflow: 'hidden', transition: 'grid-template-rows .6s cubic-bezier(.22,1,.36,1),opacity .5s'
+        }
+      };
+    });
+    return {
+      menu: s.menu, sending: s.sending, done: s.done, notDone: !s.done, faqs,
+      openMenu: () => { this.lock(true); this.setState({ menu: true }); },
+      closeMenu: () => { this.lock(false); this.setState({ menu: false }); },
+      reset: () => this.setState({ done: false, err: {}, f: { treat: '', slot: 'Anytime', name: '', phone: '', email: '', notes: '', consent: false } }),
+      chips: mk(this.TREATS, 'treat'), slots: mk(this.SLOTS, 'slot'),
+      vName: f.name, vPhone: f.phone, vEmail: f.email, vNotes: f.notes, vConsent: f.consent,
+      onName: e => this.set('name', e.target.value),
+      onPhone: e => this.set('phone', e.target.value),
+      onEmail: e => this.set('email', e.target.value),
+      onNotes: e => this.set('notes', e.target.value),
+      toggleConsent: () => this.set('consent', !f.consent),
+      sName: this.field(s.err.name), sPhone: this.field(s.err.phone), sEmail: this.field(s.err.email),
+      sNotes: Object.assign(this.field(false), { borderRadius: '22px', resize: 'vertical', lineHeight: 1.7 }),
+      sConsentRow: { display: 'flex', gap: '13px', alignItems: 'flex-start', background: 'transparent', border: 0, padding: 0, cursor: 'pointer', fontFamily: 'inherit', width: '100%' },
+      sConsentBox: {
+        flex: '0 0 auto', width: '19px', height: '19px', marginTop: '1px', borderRadius: '50%',
+        border: '1px solid ' + (s.err.consent ? '#9E4B37' : f.consent ? '#8D6754' : '#D9C8C0'),
+        background: f.consent ? '#8D6754' : 'transparent',
+        boxShadow: f.consent ? 'inset 0 0 0 3.5px #FFFFFF' : 'none',
+        transition: 'background .4s,border-color .4s,box-shadow .4s'
+      },
+      sSubmit: {
+        display: 'inline-flex', alignItems: 'center', gap: '11px', border: 0, cursor: s.sending ? 'progress' : 'pointer',
+        background: s.sending ? '#8D6754' : '#272827', color: '#FAF6F2',
+        fontSize: '11px', letterSpacing: '.16em', textTransform: 'uppercase', padding: '20px 32px', borderRadius: '100px',
+        opacity: s.sending ? 0.9 : 1, transition: 'background .6s cubic-bezier(.22,1,.36,1),opacity .4s'
+      },
+      submitLabel: s.sending ? 'Sending' : 'Send enquiry',
+      submit,
+      eTreat: !!s.err.treat, eName: !!s.err.name, ePhone: !!s.err.phone, eEmail: !!s.err.email, eConsent: !!s.err.consent
+    };
+  }
+}
+</script>
+</body>
+</html>
