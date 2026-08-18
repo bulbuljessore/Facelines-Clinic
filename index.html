@@ -25,6 +25,17 @@ image-slot{display:block}
 @keyframes bIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
 @keyframes bSpin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.06s !important}}
+img,svg,video{max-width:100%}
+@media (max-width:1023px){[data-hero]{grid-template-columns:1fr !important}}
+@media (max-width:900px){
+[data-tgrid]{grid-template-columns:1fr !important}
+[data-tpic]{width:100%;max-width:540px;margin:0 auto}
+[data-sticky]{position:static !important;top:auto !important}
+[data-tap]{min-height:44px}
+[data-tap-icon]{width:44px !important;height:44px !important}
+}
+@media (max-width:560px){[data-hide-sm]{display:none !important}}
+@media (max-width:400px){[data-lbl-full]{display:none !important}[data-lbl-short]{display:inline !important}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -39,10 +50,10 @@ image-slot{display:block}
         <img src="logo-facelines.png" alt="Facelines Clinic" width="192" height="53" style="display:block;height:clamp(26px,2.6vw,34px);width:auto;filter:brightness(0) opacity(.9)" />
       </a>
       <div style="display:flex;align-items:center;gap:clamp(8px,1.4vw,18px);background:rgba(250,246,242,.75);backdrop-filter:blur(10px);border-radius:100px;padding:4px 6px 4px 10px">
-        <button type="button" onClick="{{ openForm }}" style="border:1px solid #D9C8C0;background:transparent;cursor:pointer;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px 22px;border-radius:100px;transition:background .55s cubic-bezier(.22,1,.36,1),border-color .55s,color .55s" style-hover="background:#272827;border-color:#272827;color:#FAF6F2">Book a visit</button>
-        <button type="button" onClick="{{ openMenu }}" aria-label="Open menu" style="display:flex;align-items:center;gap:11px;border:0;background:transparent;cursor:pointer;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px 4px;transition:color .4s" style-hover="color:#8D6754">
+        <button type="button" data-tap="1" onClick="{{ openForm }}" style="border:1px solid #D9C8C0;background:transparent;cursor:pointer;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px clamp(15px,2vw,22px);border-radius:100px;white-space:nowrap;transition:background .55s cubic-bezier(.22,1,.36,1),border-color .55s,color .55s" style-hover="background:#272827;border-color:#272827;color:#FAF6F2"><span data-lbl-full="1">Book a visit</span><span data-lbl-short="1" style="display:none">Book</span></button>
+        <button type="button" data-tap="1" onClick="{{ openMenu }}" aria-label="Open menu" style="display:flex;align-items:center;gap:11px;border:0;background:transparent;cursor:pointer;color:#272827;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:13px 6px;transition:color .4s" style-hover="color:#8D6754">
           <span style="display:flex;flex-direction:column;gap:4px;width:20px"><span style="height:1px;background:currentColor"></span><span style="height:1px;background:currentColor;width:70%;margin-left:auto"></span></span>
-          Menu
+          <span data-hide-sm="1">Menu</span>
         </button>
       </div>
     </div>
@@ -69,7 +80,7 @@ image-slot{display:block}
     </div>
   </sc-if>
 
-  <section id="b-top" style="position:relative;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));align-items:stretch;min-height:min(100svh,940px)">
+  <section id="b-top" data-hero="1" style="position:relative;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,430px),1fr));align-items:stretch;min-height:min(100svh,940px)">
     <div aria-hidden="true" style="position:absolute;top:-18%;left:-16%;width:min(60vw,720px);height:min(60vw,720px);border-radius:50%;background:radial-gradient(circle at 45% 45%,#F0E0D9,rgba(240,224,217,0) 68%);filter:blur(10px);animation:bDrift 21s ease-in-out infinite;pointer-events:none"></div>
     <div aria-hidden="true" style="position:absolute;bottom:-26%;left:18%;width:min(46vw,560px);height:min(46vw,560px);border-radius:50%;background:radial-gradient(circle at 55% 45%,#F5EBE7,rgba(245,235,231,0) 70%);filter:blur(12px);animation:bDrift 27s ease-in-out infinite reverse;pointer-events:none"></div>
 
@@ -126,8 +137,8 @@ image-slot{display:block}
         <h2 data-soft="1" style="margin:0;font-family:'Newsreader',serif;font-weight:200;font-size:clamp(28px,3.6vw,50px);line-height:1.12;letter-spacing:-.01em;max-width:20ch">Five treatments, chosen carefully.</h2>
         <div data-soft="1" style="font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#3F3A37">Scroll to browse</div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(26px,4vw,70px);align-items:start">
-        <div style="align-self:stretch"><div style="position:sticky;top:clamp(88px,14vh,130px)">
+      <div data-tgrid="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(26px,4vw,70px);align-items:start">
+        <div data-tpic="1" style="align-self:stretch"><div data-sticky="1" style="position:sticky;top:clamp(88px,14vh,130px)">
           <div id="b-stack" style="position:relative;aspect-ratio:4/5;border-radius:clamp(120px,20vw,240px) clamp(120px,20vw,240px) 26px 26px;overflow:hidden;background:#EADFD9">
             <div data-slide="0" style="position:absolute;inset:0;opacity:1"><image-slot id="b-tr1" src="uploads/pexels-lucas-guimaraes-bueno-258458556-13060606.jpg" shape="rect" placeholder="Anti-wrinkle"></image-slot></div>
             <div data-slide="1" style="position:absolute;inset:0;opacity:0"><image-slot id="b-tr2" src="uploads/pexels-mart-production-7290081.jpg" shape="rect" placeholder="Dermal filler"></image-slot></div>
@@ -242,13 +253,13 @@ image-slot{display:block}
         <div>
           <div style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:#BBA498;margin-bottom:14px">Follow</div>
           <div style="display:flex;gap:9px">
-            <a href="#" aria-label="Instagram" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #45403D;border-radius:100px;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s,transform .5s" style-hover="background:#CD9D88;border-color:#CD9D88;transform:translateY(-3px)">
+            <a href="#" aria-label="Instagram" data-tap-icon="1" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #45403D;border-radius:100px;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s,transform .5s" style-hover="background:#CD9D88;border-color:#CD9D88;transform:translateY(-3px)">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FAF6F2" stroke-width="1.5" aria-hidden="true"><rect x="3.4" y="3.4" width="17.2" height="17.2" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="16.9" cy="7.1" r="1.1" fill="#FAF6F2" stroke="none"></circle></svg>
             </a>
-            <a href="#" aria-label="Facebook" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #45403D;border-radius:100px;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s,transform .5s" style-hover="background:#CD9D88;border-color:#CD9D88;transform:translateY(-3px)">
+            <a href="#" aria-label="Facebook" data-tap-icon="1" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #45403D;border-radius:100px;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s,transform .5s" style-hover="background:#CD9D88;border-color:#CD9D88;transform:translateY(-3px)">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="#FAF6F2" aria-hidden="true"><path d="M13.4 21v-8h2.7l.4-3.15h-3.1V7.85c0-.9.25-1.5 1.6-1.5h1.7V3.5c-.3 0-1.3-.1-2.5-.1-2.45 0-4.15 1.5-4.15 4.25V9.85H7.4V13h2.65v8Z"></path></svg>
             </a>
-            <a href="#" aria-label="LinkedIn" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #45403D;border-radius:100px;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s,transform .5s" style-hover="background:#CD9D88;border-color:#CD9D88;transform:translateY(-3px)">
+            <a href="#" aria-label="LinkedIn" data-tap-icon="1" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #45403D;border-radius:100px;transition:background .5s cubic-bezier(.22,1,.36,1),border-color .5s,transform .5s" style-hover="background:#CD9D88;border-color:#CD9D88;transform:translateY(-3px)">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="#FAF6F2" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3.2 8.5h3.5V21H3.2Zm6.3 0H13v1.75c.5-.95 1.75-2 3.6-2 2.4 0 4.4 1.6 4.4 5V21h-3.5v-6.35c0-1.6-.6-2.6-2-2.6-1.2 0-1.95.8-2.25 1.6-.1.3-.15.7-.15 1.05V21H9.5Z"></path></svg>
             </a>
           </div>
